@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Genres>
+  <Genre>
+    <Id>1</Id>
+    <pGenre>Poetry</pGenre>
+  </Genre>
+  <Genre>
+    <Id>2</Id>
+    <pGenre>Drama</pGenre>
+  </Genre>
+  <Genre>
+    <Id>3</Id>
+    <pGenre>Novelette</pGenre>
+  </Genre>
+</Genres>

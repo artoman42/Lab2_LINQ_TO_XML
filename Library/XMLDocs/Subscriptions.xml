@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Subscriptions>
+  <Subscription>
+    <Id>1</Id>
+    <ClientId>1</ClientId>
+    <BookId>1</BookId>
+    <DateOfIssue>2023-04-11T15:30:00Z</DateOfIssue>
+    <ExpectedReturnDate>2023-04-11T15:30:00Z</ExpectedReturnDate>
+  </Subscription>
+  <Subscription>
+    <Id>2</Id>
+    <ClientId>2</ClientId>
+    <BookId>3</BookId>
+    <DateOfIssue>2023-04-11T15:30:00Z</DateOfIssue>
+    <ExpectedReturnDate>2023-04-11T15:30:00Z</ExpectedReturnDate>
+  </Subscription>
+  <Subscription>
+    <Id>3</Id>
+    <ClientId>2</ClientId>
+    <BookId>3</BookId>
+    <DateOfIssue>2023-04-11T15:30:00Z</DateOfIssue>
+    <ExpectedReturnDate>2023-04-11T15:30:00Z</ExpectedReturnDate>
+  </Subscription>
+</Subscriptions>

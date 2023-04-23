@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Сo_Authors>
+  <Co_Author>
+    <Id>1</Id>
+    <BookId>1</BookId>
+    <AuthorId>1</AuthorId>
+  </Co_Author>
+  <Co_Author>
+    <Id>2</Id>
+    <BookId>1</BookId>
+    <AuthorId>3</AuthorId>
+  </Co_Author>
+  <Co_Author>
+    <Id>3</Id>
+    <BookId>2</BookId>
+    <AuthorId>3</AuthorId>
+  </Co_Author>
+</Сo_Authors>

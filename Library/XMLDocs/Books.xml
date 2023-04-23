@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Books>
+  <Book>
+    <Id>1</Id>
+    <Name>asdasd</Name>
+    <GenreId>1</GenreId>
+    <CollateralValue>30.4</CollateralValue>
+    <Amount>5</Amount>
+  </Book>
+  <Book>
+    <Id>2</Id>
+    <Name>allafsf</Name>
+    <GenreId>2</GenreId>
+    <CollateralValue>90.5</CollateralValue>
+    <Amount>3</Amount>
+  </Book>
+  <Book>
+    <Id>3</Id>
+    <Name>lasdasd</Name>
+    <GenreId>3</GenreId>
+    <CollateralValue>67.4</CollateralValue>
+    <Amount>8</Amount>
+  </Book>
+</Books>

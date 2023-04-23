@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Subscriptions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Subscription">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" type="xs:unsignedByte" />
+              <xs:element name="ClientId" type="xs:unsignedByte" />
+              <xs:element name="BookId" type="xs:unsignedByte" />
+              <xs:element name="DateOfIssue" type="xs:dateTime" />
+              <xs:element name="ExpectedReturnDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
