@@ -17,7 +17,9 @@ namespace Lab2
             var configuration = builder.Build();
 
             var serviceProvider = new ServiceCollection()
-            .Configure<MyConfiguration>(options => configuration.GetSection("MyConfiguration")
+            .Configure<BLLConfiguration>(options => configuration.GetSection("BLLConfiguration")
+            .Bind(options))
+            .Configure<DALConfiguration>(options => configuration.GetSection("DALConfiguration")
             .Bind(options))
             .AddServices()
             .BuildServiceProvider();

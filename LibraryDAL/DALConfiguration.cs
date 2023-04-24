@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryBLL
+namespace LibraryDAL
 {
-    public class MyConfiguration
+    public class DALConfiguration
     {
-        public string XsdSchemasFolder { get; set; }
         public string XMLDocsFolder { get; set; }
+        public string XSDSchemesFolder { get; set; }
     }
 }

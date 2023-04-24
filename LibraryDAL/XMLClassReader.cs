@@ -2,12 +2,19 @@
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-
+using Microsoft.Extensions.Options;
 namespace LibraryDAL
 {
     public class XMLClassReader : IXMLClassReader
     {
-        public string path = "D:\\KPI\\.NET\\Lab2\\Library\\XMLDocs\\";
+        private readonly DALConfiguration _config;
+        private string path;
+        public XMLClassReader(IOptions<DALConfiguration> config)
+        {
+            _config = config.Value;
+            path = _config.XMLDocsFolder;
+
+        }
         public IEnumerable<Author> AuthorReader(string FileName) { 
             List<Author> authors = new List<Author>() { };
             XmlDocument xmlDocument = new XmlDocument();

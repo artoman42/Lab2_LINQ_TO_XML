@@ -5,11 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Library;
+using Microsoft.Extensions.Options;
+
 namespace LibraryDAL
 {
     public class XMLCLassDeserializer : IXMLClassDeserializer
     {
-        public string path = "D:\\KPI\\.NET\\Lab2\\Library\\XMLDocs\\";
+        private readonly DALConfiguration _config;
+        private string path;
+        public XMLCLassDeserializer(IOptions<DALConfiguration> config)
+        {
+            _config = config.Value;
+            path = _config.XMLDocsFolder;
+
+        }
         public IEnumerable<Author> AuthorDeserialize(string FileName)
         {
             List<Author> Authors = new List<Author>();

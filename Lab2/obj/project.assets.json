@@ -330,7 +330,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "LibraryDataStructure": "1.0.0"
+          "LibraryDataStructure": "1.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
         },
         "compile": {
           "bin/placeholder/LibraryDAL.dll": {}

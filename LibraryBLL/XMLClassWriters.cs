@@ -6,9 +6,9 @@ namespace LibraryBLL
 {
     public class XMLClassWriters : IXMLClassWriters
     {
-        private readonly MyConfiguration _config;
-        public string path;
-        public XMLClassWriters(IOptions<MyConfiguration> config)
+        private readonly BLLConfiguration _config;
+        private string path;
+        public XMLClassWriters(IOptions<BLLConfiguration> config)
         {
             _config = config.Value;
             path = _config.XMLDocsFolder;
