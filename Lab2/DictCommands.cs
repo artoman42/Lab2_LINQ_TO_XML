@@ -13,20 +13,43 @@ namespace LibraryUIL
         {
             _commands = commands;
         }
-        public Dictionary<DictCommandsEnum, Action> ActionDictionary = new Dictionary<DictCommandsEnum, Action>();
+        public Dictionary<DictCommandsEnum, Delegate> ActionDictionary = new Dictionary<DictCommandsEnum, Delegate>();
         public void Load()
         {
-            ActionDictionary.Add(DictCommandsEnum.GetInnerJoin, _commands.ShowInnerJoin);
+            ActionDictionary[DictCommandsEnum.GetInnerJoin] = new Action(_commands.ShowInnerJoin);
+            ActionDictionary[DictCommandsEnum.ShowAuthorDeserialize] = new Action<string>(_commands.ShowAuthorDeserialize);
+       
         }
-        public void Invoke(string s)
+        public void Invoke(string s, string[] param)
         {
-           if(Enum.TryParse(s, out DictCommandsEnum command))
+            if (Enum.TryParse(s, out DictCommandsEnum command))
             {
-                ActionDictionary[command].Invoke();
+                if (ActionDictionary.TryGetValue(command, out Delegate action))
+                {
+                    
+                    var methodInfo = action.Method;
+                    var parameters = methodInfo.GetParameters();
+                    if (parameters.Length == 0)
+                    {
+                        action.DynamicInvoke();
+                    }
+                    else
+                    {
+                        if(param.Count() == 0)
+                        {
+                            Console.WriteLine("Need params!");
+                        }
+                        action.DynamicInvoke(param);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Command not found");
+                }
             }
             else
             {
-                Console.WriteLine("BadCommand");
+                Console.WriteLine("Bad command");
             }
         }
     }

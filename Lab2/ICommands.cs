@@ -9,5 +9,6 @@ namespace LibraryUIL
     public interface ICommands
     {
         public void ShowInnerJoin();
+        public void ShowAuthorDeserialize(string fileName);
     }
 }

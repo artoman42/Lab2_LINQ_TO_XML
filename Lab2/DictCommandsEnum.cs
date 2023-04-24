@@ -8,6 +8,7 @@ namespace LibraryUIL
 {
     public enum DictCommandsEnum
     {
-        GetInnerJoin
+        GetInnerJoin,
+        ShowAuthorDeserialize
     }
 }

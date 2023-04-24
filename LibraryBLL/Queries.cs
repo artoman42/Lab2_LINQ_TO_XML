@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library;
 using LibraryBLL.QeuryHelperClasses;
 using LibraryDAL;
 namespace LibraryBLL
@@ -18,17 +19,22 @@ namespace LibraryBLL
         public IEnumerable<HelpClassInnerJoinClientSubscription> GetInnerJoin()
         {
             //name id
-            return from c in _xmlClassDoc.GetXDoc("Clients.xml").Descendants("Сlient")
-                   from s in _xmlClassDoc.GetXDoc("Subsctiptions.xml").Descendants("Subsctiprion")
-                   where int.Parse(c.Element("Id").Value) == int.Parse(s.Element("ClientId").Value)
+            string name = typeof(Client).GetProperties().FirstOrDefault(x => x.Name.ToString() == "FullName")
+                .Name.ToString();
+            string id = typeof(Client).BaseType.GetProperties()[0].Name.ToString();
+            // TODO id to method
+            var l =  from c in _xmlClassDoc.GetXDoc("Clients.xml").Descendants("Client")
+                   from s in _xmlClassDoc.GetXDoc("Subscriptions.xml").Descendants("Subscription")
+                   where int.Parse(c.Element(id).Value) == int.Parse(s.Element("ClientId").Value)
                    select new HelpClassInnerJoinClientSubscription
                    {
-                       Name = c.Element("FullName").Value,
+                       Name = c.Element(name).Value,
                        DateOfIssue = DateTime.Parse(s.Element("DateOfIssue").Value),
                        ExpectedReturnDate = DateTime.Parse(s.Element("ExpectedReturnDate").Value)
                        
                    };
-
+            //if (l.Count() == 0) return null;
+            return l;
         }
     }
 }

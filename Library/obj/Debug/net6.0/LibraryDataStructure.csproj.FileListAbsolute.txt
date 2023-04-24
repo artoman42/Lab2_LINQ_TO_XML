@@ -10,3 +10,15 @@ D:\KPI\.NET\Lab2\Library\obj\Debug\net6.0\LibraryDataStructure.dll
 D:\KPI\.NET\Lab2\Library\obj\Debug\net6.0\refint\LibraryDataStructure.dll
 D:\KPI\.NET\Lab2\Library\obj\Debug\net6.0\LibraryDataStructure.pdb
 D:\KPI\.NET\Lab2\Library\obj\Debug\net6.0\ref\LibraryDataStructure.dll
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\bin\Debug\net6.0\LibraryDataStructure.deps.json
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\bin\Debug\net6.0\LibraryDataStructure.dll
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\bin\Debug\net6.0\LibraryDataStructure.pdb
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\LibraryDataStructure.csproj.AssemblyReference.cache
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\LibraryDataStructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\LibraryDataStructure.AssemblyInfoInputs.cache
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\LibraryDataStructure.AssemblyInfo.cs
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\LibraryDataStructure.csproj.CoreCompileInputs.cache
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\LibraryDataStructure.dll
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\refint\LibraryDataStructure.dll
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\LibraryDataStructure.pdb
+D:\KPI\.NET\Lab2-main\Lab2-main\Library\obj\Debug\net6.0\ref\LibraryDataStructure.dll

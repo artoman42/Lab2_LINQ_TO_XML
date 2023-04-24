@@ -12,25 +12,26 @@ namespace LibraryDAL
     public class XMLCLassDeserializer : IXMLClassDeserializer
     {
         private readonly DALConfiguration _config;
+        private readonly IXSDValidation _xSDValidation;
         private string path;
-        public XMLCLassDeserializer(IOptions<DALConfiguration> config)
+        public XMLCLassDeserializer(IOptions<DALConfiguration> config, IXSDValidation xSDValidation)
         {
             _config = config.Value;
             path = _config.XMLDocsFolder;
-
+            _xSDValidation = xSDValidation;
         }
         public IEnumerable<Author> AuthorDeserialize(string FileName)
         {
-            List<Author> Authors = new List<Author>();
-            XmlRootAttribute xmlRoot = new XmlRootAttribute();
-            xmlRoot.ElementName = "Authors";
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Author>),xmlRoot);
-            using (FileStream fs = new FileStream(path + FileName, FileMode.Open))
-            {
-                Authors = (List<Author>)serializer.Deserialize(fs);
-                //serializer.Deserialize(fs) as List<Author>;
-            }
-            return Authors;
+                List<Author> Authors = new List<Author>();
+                XmlRootAttribute xmlRoot = new XmlRootAttribute();
+                xmlRoot.ElementName = "Authors";
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Author>), xmlRoot);
+                using (FileStream fs = new FileStream(path + FileName, FileMode.Open))
+                {
+                    Authors = serializer.Deserialize(fs) as List<Author>;
+                }
+                return Authors;
+            
         }
 
         public IEnumerable<Book> BookDeserialize(string FileName)
@@ -41,7 +42,7 @@ namespace LibraryDAL
             XmlSerializer serializer = new XmlSerializer(typeof(List<Book>), xmlRoot);
             using (FileStream fs = new FileStream(path + FileName, FileMode.Open))
             {
-                Books = (List<Book>)serializer.Deserialize(fs);
+                Books = serializer.Deserialize(fs) as List<Book>;
             }
             return Books;
         }
@@ -54,7 +55,7 @@ namespace LibraryDAL
             XmlSerializer serializer = new XmlSerializer(typeof(List<Client>), xmlRoot);
             using (FileStream fs = new FileStream(path + FileName, FileMode.Open))
             {
-                Clients = (List<Client>)serializer.Deserialize(fs);
+                Clients = serializer.Deserialize(fs) as List<Client>;
             }
             return Clients;
         }
@@ -66,7 +67,7 @@ namespace LibraryDAL
             XmlSerializer serializer = new XmlSerializer(typeof(List<Co_Author>), xmlRoot);
             using (FileStream fs = new FileStream(path + FileName, FileMode.Open))
             {
-                Co_Authors = (List<Co_Author>)serializer.Deserialize(fs);
+                Co_Authors = serializer.Deserialize(fs) as List<Co_Author>;
             }
             return Co_Authors;
         }
@@ -79,7 +80,7 @@ namespace LibraryDAL
             XmlSerializer serializer = new XmlSerializer(typeof(List<Genre>), xmlRoot);
             using (FileStream fs = new FileStream(path + FileName, FileMode.Open))
             {
-                Genres = (List<Genre>)serializer.Deserialize(fs);
+                Genres = serializer.Deserialize(fs) as List<Genre>;
             }
             return Genres;
         }
@@ -91,7 +92,7 @@ namespace LibraryDAL
             XmlSerializer serializer = new XmlSerializer(typeof(List<Subscription>), xmlRoot);
             using (FileStream fs = new FileStream(path + FileName, FileMode.Open))
             {
-                Subscriptions = (List<Subscription>)serializer.Deserialize(fs);
+                Subscriptions = serializer.Deserialize(fs) as List<Subscription>;
             }
             return Subscriptions;
         }

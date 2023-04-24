@@ -9,6 +9,6 @@ namespace LibraryUIL
     public interface IDictCommands
     {
         public void Load();
-        public void Invoke(string s);
+        public void Invoke(string s, string[] param);
     }
 }

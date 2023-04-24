@@ -10,9 +10,7 @@ namespace LibraryUIL
 {
     public static class ServiceCollections
     {
-        //AppSetting.json 
-        //Iconfiguratuon -> IOPtion
-        //
+        
         public static IServiceCollection AddServices(this IServiceCollection serviceDescriptors) {
             serviceDescriptors.AddTransient<IRunner, Runner>();
             serviceDescriptors.AddTransient<IXMLClassDeserializer, XMLCLassDeserializer>();
@@ -22,7 +20,7 @@ namespace LibraryUIL
             serviceDescriptors.AddTransient<IQueries, Queries>();
             serviceDescriptors.AddTransient<IDictCommands, DictCommands>();
             serviceDescriptors.AddTransient<ICommands, Commands>();
-            
+            serviceDescriptors.AddTransient<IXSDValidation, XSDValidation>();
             return serviceDescriptors;
         }
     }

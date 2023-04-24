@@ -202,7 +202,8 @@
         "dependencies": {
           "FluentValidation": "11.5.2",
           "LibraryDAL": "1.0.0",
-          "LibraryDataStructure": "1.0.0"
+          "LibraryDataStructure": "1.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
         },
         "runtime": {
           "LibraryBLL.dll": {}
@@ -210,7 +211,8 @@
       },
       "LibraryDAL/1.0.0": {
         "dependencies": {
-          "LibraryDataStructure": "1.0.0"
+          "LibraryDataStructure": "1.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
         },
         "runtime": {
           "LibraryDAL.dll": {}
