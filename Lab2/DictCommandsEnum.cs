@@ -40,7 +40,8 @@ namespace LibraryUIL
         ShowGetAllBooksStartedWithChar,
         ShowGetJoinBooksGenres,
         ShowGetClientsWithOutRent,
-        ShowGetMaxCollateralValue
+        ShowGetMaxCollateralValue,
+        ShowGetClientFirstHaveLuckyNumber
 
     }
 }

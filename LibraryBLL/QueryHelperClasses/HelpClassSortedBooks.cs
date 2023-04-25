@@ -10,5 +10,9 @@ namespace LibraryBLL.QeuryHelperClasses
     {
         public string Name { get; set; }
         public DateTime DateOfIssue { get; set; }
+        public override string ToString()
+        {
+            return $"{Name} {DateOfIssue.ToString()}";
+        }
     }
 }

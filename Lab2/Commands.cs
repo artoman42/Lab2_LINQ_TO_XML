@@ -166,5 +166,9 @@ namespace LibraryUIL
         {
             ShowValue<decimal>(_IQeuries.GetMaxCollateralValue());
         }
+        public void ShowGetClientFirstHaveLuckyNumber(string number = "666")
+        {
+            ShowValue<Client>(_IQeuries.GetClientFirstHaveLuckyNumber(number));
+        }
     }
 }

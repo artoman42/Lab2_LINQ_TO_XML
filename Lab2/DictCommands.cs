@@ -53,7 +53,7 @@ namespace LibraryUIL
             ActionDictionary[DictCommandsEnum.ShowGetJoinBooksGenres] = new Action(_commands.ShowGetJoinBooksGenres);
             ActionDictionary[DictCommandsEnum.ShowGetClientsWithOutRent] = new Action(_commands.ShowGetClientsWithOutRent);
             ActionDictionary[DictCommandsEnum.ShowGetMaxCollateralValue] = new Action(_commands.ShowGetMaxCollateralValue);
-            
+            ActionDictionary[DictCommandsEnum.ShowGetClientFirstHaveLuckyNumber] = new Action<string>(_commands.ShowGetClientFirstHaveLuckyNumber);
            
         }
         public void Invoke(string s, string[] param)

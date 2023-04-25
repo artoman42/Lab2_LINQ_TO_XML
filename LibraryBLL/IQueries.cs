@@ -27,6 +27,6 @@ namespace LibraryBLL
         public IEnumerable<HelpClassJoinBookGenres> GetJoinBooksGenres();
         public IEnumerable<Client> GetClientsWithOutRent();
         public decimal GetMaxCollateralValue();
-
+        public Client GetClientFirstHaveLuckyNumber(string number = "666");
     }
 }

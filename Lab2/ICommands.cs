@@ -42,5 +42,7 @@ namespace LibraryUIL
         public void ShowGetClientsWithOutRent();
         public void ShowGetMaxCollateralValue();
 
+        public void ShowGetClientFirstHaveLuckyNumber(string number = "666");
+
     }
 }

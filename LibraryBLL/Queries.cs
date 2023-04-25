@@ -17,6 +17,9 @@ namespace LibraryBLL
     public class Queries : IQueries
     {
         private readonly IXClassDoc _xClassDoc;
+        //Сontext should be injected and contains all XDocuments 
+        //Send to teacher Code
+        //Richter - GC, and Serialization
         public Queries(IXClassDoc xClassDoc)
         {
             _xClassDoc = xClassDoc;
@@ -243,7 +246,7 @@ namespace LibraryBLL
                        FullName = c.Element(new Client().GetPropertyName(x => x.FullName)).Value,
                        Phone = c.Element(new Client().GetPropertyName(x => x.Phone)).Value
                    };
-
+             
         }
         public decimal GetMaxCollateralValue()
         {
@@ -251,6 +254,19 @@ namespace LibraryBLL
             return _xClassDoc.GetXDoc<Book>().GetElements<Book>().Max(
                 x => x.Element(collateralValue).ParseValue<decimal>());
         }
-
+        public Client GetClientFirstHaveLuckyNumber(string number = "666")
+        {
+            string phone = new Client().GetPropertyName(x => x.Phone);
+            return (from c in _xClassDoc.GetXDoc<Client>().GetElements<Client>()
+                    where c.Element(phone).Value.Contains(number)
+                    select new Client()
+                    {
+                        Id = c.Element(new Client().GetIdName()).ParseValue<int>(),
+                        Adress = c.Element(new Client().GetPropertyName(x => x.Adress)).Value,
+                        Category = (Categories)Enum.Parse(typeof(Categories), c.Element(new Client().GetPropertyName(x => x.Category)).Value),
+                        FullName = c.Element(new Client().GetPropertyName(x => x.FullName)).Value,
+                        Phone = c.Element(new Client().GetPropertyName(x => x.Phone)).Value
+                    }).FirstOrDefault();
+        }
     }
 }
