@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibraryDAL;
+using Library;
+using Library.enums;
+
 namespace LibraryUIL
 {
     public class Commands : ICommands
@@ -25,21 +28,135 @@ namespace LibraryUIL
             _xMLClassReader = xMLClassReader;
             _xSDValidation = xSDValidation;
         }
-        public void ShowInnerJoin()
+        public void ShowValue<T>( T value)
         {
-            var list = _IQeuries.GetInnerJoin();
-            foreach (var client in list)
+            Console.WriteLine(value);
+        }
+
+        public void ShowList<T>(IEnumerable<T> list)
+        {
+            foreach(var item in list)
             {
-                Console.WriteLine(client.ToString());
+                Console.WriteLine(item);
             }
+        }
+        public void ShowDictionaryWithList<T1, T2>(Dictionary<T1,List<T2>> dict){
+            foreach(var item in dict)
+            {
+                Console.WriteLine(item);
+                foreach(var item2 in item.Value)
+                {
+                    Console.WriteLine(item2);
+                }
+            }
+        }
+        public void ShowAuthorReader(string fileName) {
+            ShowList<Author>(_xMLClassReader.AuthorReader(fileName));
+        }
+        public void ShowBookReader(string fileName)
+        {
+            ShowList<Book>(_xMLClassReader.BookReader(fileName));
+        }
+        public void ShowClientReader(string fileName)
+        {
+            ShowList<Client>(_xMLClassReader.ClientReader(fileName));
+        }
+        public void ShowCo_AuthorReader(string fileName)
+        {
+            ShowList<Co_Author>(_xMLClassReader.Co_AuthorReader(fileName));
+        }
+        public void ShowGenreReader(string fileName)
+        {
+            ShowList<Genre>(_xMLClassReader.GenreReader(fileName));
+        }
+        public void ShowSubscriptionReader(string fileName)
+        {
+            ShowList<Subscription>(_xMLClassReader.SubscriptionReader(fileName));
         }
         public void ShowAuthorDeserialize(string fileName)
         {
-            if (_xSDValidation.MakeValidation(fileName))
-            {
-                var list = _xMLClassDeserializer.AuthorDeserialize(fileName);
-                foreach (var client in list) Console.WriteLine(client.ToString());
-            }
+            ShowList<Author>(_xMLClassDeserializer.AuthorDeserialize(fileName));
+        }
+        public void ShowBookDeserialize(string fileName)
+        {
+            ShowList<Book>(_xMLClassDeserializer.BookDeserialize(fileName));
+        }
+        public void ShowClientDeserialize(string fileName)
+        {
+            ShowList<Client>(_xMLClassDeserializer.ClientDeserialize(fileName));
+        }
+        public void ShowCo_AuthorDeserialize(string fileName)
+        {
+            ShowList<Co_Author>(_xMLClassDeserializer.Co_AuthorDeserialize(fileName));
+        }
+        public void ShowGenreDeserialize(string fileName) 
+        {
+            ShowList<Genre>(_xMLClassDeserializer.GenreDeserialize(fileName));
+        }
+        public void ShowSubscriptionDeserialize(string fileName)
+        {
+            ShowList<Subscription>(_xMLClassDeserializer.SubscriptionDeserialize(fileName));
+        }
+
+        public void ShowInnerJoin()
+        {
+            ShowList<HelpClassInnerJoinClientSubscription>(_IQeuries.GetInnerJoin());
+        }
+        public void ShowSelectClientsByCategory(Categories category)
+        {
+            ShowList<HelpClassFindClientsByCategory>(_IQeuries.SelectClientsByCategory(category));
+        }
+        public void ShowGetAllBooksByClient()
+        {
+            ShowDictionaryWithList<string, Book>(_IQeuries.GetAllBooksByClient());
+        }
+        public void ShowGetFullAmountOfBook()
+        {
+            ShowValue<int>(_IQeuries.GetFullAmountOfBook());
+        }
+        public void ShowGetBooksByGenres()
+        {
+            ShowList<HelpClassGroupJoinBookGenre>(_IQeuries.GetBooksByGenres());
+        }
+        public void ShowGetBoolAllBooksWithSpecificAmount(int amount = 5)
+        {
+            ShowValue<bool>(_IQeuries.GetBoolAllBooksWithSpecificAmount(amount));
+        }
+        public void ShowGetClientsWithSkipedIndex(int index = 2)
+        {
+            ShowList<Client>(_IQeuries.GetClientsWithSkipedIndex(index));    
+        }
+        public void GetSortedOldestTakenBooks()
+        {
+            ShowList<HelpClassSortedBooks>(_IQeuries.GetSortedOldestTakenBooks());  
+        }
+        public void ShowGetAvgRentProfit()
+        {
+            ShowValue<decimal>(_IQeuries.GetAvgRentProfit());
+        }
+        public void ShowGetRentedBooksInRange(int begin = -3, int end = 3)
+        {
+            ShowList<Book>(_IQeuries.GetRentedBooksInRange(begin, end));
+        }
+        public void ShowGetPercentOfCategoryClients(Categories category = Categories.Student)
+        {
+            ShowValue<decimal>(_IQeuries.GetPercentOfCategoryClients(category));
+        }
+        public void ShowGetAllBooksStartedWithChar(char a = 'Е')
+        {
+            ShowList<string>(_IQeuries.GetAllBooksStartedWithChar(a));
+        }
+        public void ShowGetJoinBooksGenres()
+        {
+            ShowList<HelpClassJoinBookGenres>(_IQeuries.GetJoinBooksGenres());
+        }
+        public void ShowGetClientsWithOutRent()
+        {
+            ShowList<Client>(_IQeuries.GetClientsWithOutRent());
+        }
+        public void ShowGetMaxCollateralValue()
+        {
+            ShowValue<decimal>(_IQeuries.GetMaxCollateralValue());
         }
     }
 }

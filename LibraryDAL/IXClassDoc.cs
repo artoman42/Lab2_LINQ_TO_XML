@@ -10,7 +10,7 @@ namespace LibraryDAL
 {
     public interface IXClassDoc
     {
-        public XDocument GetXDoc(string FileName);
+        public XDocument GetXDoc<T>(T FileName);
 
     }
 

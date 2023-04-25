@@ -4,21 +4,21 @@
     <Id>1</Id>
     <FullName>asdasd</FullName>
     <Adress>asdas</Adress>
-    <Phone>20202002</Phone>
+    <Phone>0934816204</Phone>
     <Category>Student</Category>
   </Client>
   <Client>
     <Id>2</Id>
     <FullName>asldkaslkdaskd</FullName>
     <Adress>askldaskd</Adress>
-    <Phone>201200505</Phone>
+    <Phone>0934816204</Phone>
     <Category>Renter</Category>
   </Client>
   <Client>
     <Id>3</Id>
     <FullName>lolokiojkl</FullName>
     <Adress>skldksokdosdk</Adress>
-    <Phone>589834593</Phone>
+    <Phone>0934816204</Phone>
     <Category>Schoolkid</Category>
   </Client>
 </Clients>

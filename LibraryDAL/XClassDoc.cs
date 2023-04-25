@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Extensions.Options;
+
 namespace LibraryDAL
 {
     public  class XClassDoc : IXClassDoc
@@ -18,9 +19,9 @@ namespace LibraryDAL
             path = _config.XMLDocsFolder;
         }
 
-        public XDocument GetXDoc(string FileName)
+        public XDocument GetXDoc<T>(T FileName)
         {
-            XDocument doc = XDocument.Load(path + FileName);
+            XDocument doc = XDocument.Load(path + typeof(T).Name + "s");
             return doc;
         }
 

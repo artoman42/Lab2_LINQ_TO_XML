@@ -6,6 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using LibraryDAL;
 using LibraryBLL;
+using FluentValidation;
+using Library;
+using LibraryBLL.Validators;
+
 namespace LibraryUIL
 {
     public static class ServiceCollections
@@ -21,6 +25,13 @@ namespace LibraryUIL
             serviceDescriptors.AddTransient<IDictCommands, DictCommands>();
             serviceDescriptors.AddTransient<ICommands, Commands>();
             serviceDescriptors.AddTransient<IXSDValidation, XSDValidation>();
+
+            serviceDescriptors.AddTransient<IValidator<Author>, AuthorValidator>();
+            serviceDescriptors.AddTransient<IValidator<Book>, BookValidator>();
+            serviceDescriptors.AddTransient<IValidator<Client>, ClientValidator>();
+            serviceDescriptors.AddTransient<IValidator<Co_Author>, Co_AuthorValidator>();
+            serviceDescriptors.AddTransient<IValidator<Genre>, GenreValidator>();
+            serviceDescriptors.AddTransient<IValidator<Subscription>, SubscriptionValidator>();
             return serviceDescriptors;
         }
     }
