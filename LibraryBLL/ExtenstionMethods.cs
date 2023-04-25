@@ -56,6 +56,6 @@ namespace LibraryBLL
         {
             return xmlDocument.Descendants(typeof(T).Name);
         }
-     
+        
     }
 }

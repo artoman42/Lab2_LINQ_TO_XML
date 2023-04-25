@@ -10,5 +10,9 @@ namespace LibraryBLL.QeuryHelperClasses
     {
         public string Name { get; set; }
         public Genres Genre { get; set; }
+        public override string ToString()
+        {
+            return $"{Name} {Genre}";
+        }
     }
 }
