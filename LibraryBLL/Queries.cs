@@ -23,14 +23,19 @@ namespace LibraryBLL
         }
         public IEnumerable<HelpClassInnerJoinClientSubscription> GetInnerJoin()
         {
+            Console.WriteLine("@SADADS");
             string name = new Client().GetPropertyName(x => x.FullName);
             string dateOfIssue = new Subscription().GetPropertyName(x => x.DateOfIssue);
             string expectedReturnDate = new Subscription().GetPropertyName(x => x.ExpectedReturnDate);
             string id = typeof(Client).GetIdName();
             string clientId = new Subscription().GetPropertyName(x => x.ClientId);
-
-            return  from c in _xClassDoc.GetXDoc(typeof(Client)).GetElements<Client>()
-                   from s in _xClassDoc.GetXDoc(typeof(Subscription)).GetElements<Subscription>()
+            var l = _xClassDoc.GetXDoc<Client>().GetElements<Client>();
+            foreach (XElement k in l)
+            {
+                var c = k.Element(id);
+            }
+            return  from c in _xClassDoc.GetXDoc<Client>().GetElements<Client>()
+                   from s in _xClassDoc.GetXDoc<Subscription>().GetElements<Subscription>()
                    where c.Element(id).ParseValue<int>() == s.Element(clientId).ParseValue<int>()
                    select new HelpClassInnerJoinClientSubscription
                    {
@@ -45,7 +50,7 @@ namespace LibraryBLL
             string _category = new Client().GetPropertyName(x => x.Category);
             string name = new Client().GetPropertyName(x => x.FullName);
 
-            return from c in _xClassDoc.GetXDoc(typeof(Client)).GetElements<Client>()
+            return from c in _xClassDoc.GetXDoc<Client>().GetElements<Client>()
                    where c.Element(_category).ParseValue<Categories>() == category
                    select new HelpClassFindClientsByCategory()
                    {
@@ -62,9 +67,9 @@ namespace LibraryBLL
             string clientId = new Subscription().GetPropertyName(x => x.ClientId);
             string fullName = new Client().GetPropertyName(x => x.FullName);
 
-            return _xClassDoc.GetXDoc(typeof(Client)).GetElements<Client>()
-                .GroupJoin(_xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
-                            .Join(_xClassDoc.GetXDoc(typeof(Subscription)).GetElements<Subscription>(),
+            return _xClassDoc.GetXDoc<Client>().GetElements<Client>()
+                .GroupJoin(_xClassDoc.GetXDoc<Book>().GetElements<Book>()
+                            .Join(_xClassDoc.GetXDoc<Subscription>().GetElements<Subscription>(),
                                   c => c.Element(_bookId).ParseValue<int>(),
                                   cb => cb.Element(bookId).ParseValue<int>(),
                                   (c, cb) => new {
@@ -84,7 +89,7 @@ namespace LibraryBLL
         public int GetFullAmountOfBook()
         {
             string amount = new Book().GetPropertyName(x => x.Amount);
-            return _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
+            return _xClassDoc.GetXDoc<Book>().GetElements<Book>()
                 .Aggregate(0, (sum, a) => sum + a.Element(amount).ParseValue<int>());
         }
         public IEnumerable<HelpClassGroupJoinBookGenre> GetBooksByGenres()
@@ -92,8 +97,8 @@ namespace LibraryBLL
             string _genreId = typeof(Genre).GetIdName();
             string genreId = new Book().GetPropertyName(x => x.GenreId);
             string pGenre = new Genre().GetPropertyName(x => x.pGenre);
-            return _xClassDoc.GetXDoc(typeof(Genre)).GetElements<Genre>()
-                .GroupJoin(_xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>(),
+            return _xClassDoc.GetXDoc<Genre>().GetElements<Genre>()
+                .GroupJoin(_xClassDoc.GetXDoc<Book>().GetElements<Book>(),
                     g => g.Element(_genreId).ParseValue<int>(),
                     b => b.Element(genreId).ParseValue<int>(),
                     (b, g) => new HelpClassGroupJoinBookGenre
@@ -115,13 +120,13 @@ namespace LibraryBLL
         public bool GetBoolAllBooksWithSpecificAmount(int amount = 5)
         {
             string _amount = new Book().GetPropertyName(x => x.Amount);
-            return _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
+            return _xClassDoc.GetXDoc<Book>().GetElements<Book>()
                 .All(x => x.Element(_amount).ParseValue<int>() >= amount);
         }
         public IEnumerable<Client> GetClientsWithSkipedIndex(int index = 2)
         {
 
-            return _xClassDoc.GetXDoc(typeof(Client)).GetElements<Client>()
+            return _xClassDoc.GetXDoc<Client>().GetElements<Client>()
                 .Skip(index)
                 .Select(x =>  new Client()
                 {
@@ -138,8 +143,8 @@ namespace LibraryBLL
             string name = new Book().GetPropertyName(x => x.Name);
             string _bookId = typeof(Book).GetIdName();
             string bookId = new Subscription().GetPropertyName(x => x.BookId);
-            return from b in _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
-                   join s in _xClassDoc.GetXDoc(typeof(Subscription)).GetElements<Subscription>()
+            return from b in _xClassDoc.GetXDoc<Book>().GetElements<Book>()
+                   join s in _xClassDoc.GetXDoc<Subscription>().GetElements<Subscription>()
                    on b.Element(typeof(Book).GetIdName()).ParseValue<int>() 
                    equals s.Element(bookId).ParseValue<int>()
                    orderby s.Element(dateOfIssue).ParseValue<DateTime>()
@@ -153,8 +158,8 @@ namespace LibraryBLL
         {
             string _bookId = typeof(Book).GetIdName();
             string bookId = new Subscription().GetPropertyName(x => x.BookId);
-            var t = from b in _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
-                    join s in _xClassDoc.GetXDoc(typeof(Subscription)).GetElements<Subscription>()
+            var t = from b in _xClassDoc.GetXDoc<Book>().GetElements<Book>()
+                    join s in _xClassDoc.GetXDoc<Subscription>().GetElements<Subscription>()
                     on b.Element(_bookId).ParseValue<int>()
                     equals s.Element(bookId).ParseValue<int>()
                     select new Subscription()
@@ -172,8 +177,8 @@ namespace LibraryBLL
             string _bookId = typeof(Book).GetIdName();
             string bookId = new Subscription().GetPropertyName(x => x.BookId);
             string dateOfIssue = new Subscription().GetPropertyName(x => x.DateOfIssue);
-            return from b in _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
-                   join s in _xClassDoc.GetXDoc(typeof(Subscription)).GetElements<Subscription>()
+            return from b in _xClassDoc.GetXDoc<Book>().GetElements<Book>()
+                   join s in _xClassDoc.GetXDoc<Subscription>().GetElements<Subscription>()
                    on b.Element(_bookId).ParseValue<int>()
                    equals s.Element(bookId).ParseValue<int>()
                    where s.Element(dateOfIssue).ParseValue<DateTime>() >= DateTime.Now.AddMonths(begin)
@@ -192,7 +197,7 @@ namespace LibraryBLL
         public decimal GetPercentOfCategoryClients(Categories category = Categories.Student)
         {
             string _category = new Client().GetPropertyName(x => x.Category);
-            var list = from c in _xClassDoc.GetXDoc(typeof(Client)).GetElements<Client>()
+            var list = from c in _xClassDoc.GetXDoc<Client>().GetElements<Client>()
                        where c.Element(_category).ParseValue<Categories>() == category
                        select new Client
                        {
@@ -202,13 +207,13 @@ namespace LibraryBLL
                            FullName = c.Element(new Client().GetPropertyName(x => x.FullName)).Value,
                            Phone = c.Element(new Client().GetPropertyName(x => x.Phone)).Value
                        };
-            return (decimal)list.Count() / _xClassDoc.GetXDoc(typeof(Client)).GetElements<Client>().Count() * 100M;
+            return (decimal)list.Count() / _xClassDoc.GetXDoc<Client>().GetElements<Client>().Count() * 100M;
         }//11
         public IEnumerable<string> GetAllBooksStartedWithChar(char a = 'Е')
         {
             string name = new Book().GetPropertyName(x => x.Name);
 
-            return from b in _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
+            return from b in _xClassDoc.GetXDoc<Book>().GetElements<Book>()
                    where b.Element(name).Value[0] == a
                    select b.Element(name).Value;
         }
@@ -216,8 +221,8 @@ namespace LibraryBLL
         {
             string genreId = new Book().GetPropertyName(x => x.GenreId);
             string _genreId = typeof(Genre).GetIdName();
-            return _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>()
-                .Join(_xClassDoc.GetXDoc(typeof(Genre)).GetElements<Genre>(),
+            return _xClassDoc.GetXDoc<Book>().GetElements<Book>()
+                .Join(_xClassDoc.GetXDoc<Genre>().GetElements<Genre>(),
                 b => b.Element(genreId).ParseValue<int>(),
                 g => g.Element(_genreId).ParseValue<int>(),
                 (b, g) => new HelpClassJoinBookGenres
@@ -231,8 +236,8 @@ namespace LibraryBLL
         {
             string clientId = new Subscription().GetPropertyName(x => x.ClientId);
             string _clientId = typeof(Client).GetIdName();
-            return from c in _xClassDoc.GetXDoc(typeof(Client)).GetElements<Client>()
-                   where !(from s in _xClassDoc.GetXDoc(typeof(Subscription)).GetElements<Subscription>()
+            return from c in _xClassDoc.GetXDoc<Client>().GetElements<Client>()
+                   where !(from s in _xClassDoc.GetXDoc<Subscription>().GetElements<Subscription>()
                            select s.Element(clientId).ParseValue<int>())
                            .Contains(c.Element(_clientId).ParseValue<int>())
                    select new Client()
@@ -248,7 +253,7 @@ namespace LibraryBLL
         public decimal GetMaxCollateralValue()
         {
             string collateralValue = new Book().GetPropertyName(x => x.CollateralValue);
-            return _xClassDoc.GetXDoc(typeof(Book)).GetElements<Book>().Max(
+            return _xClassDoc.GetXDoc<Book>().GetElements<Book>().Max(
                 x => x.Element(collateralValue).ParseValue<decimal>());
         }
 

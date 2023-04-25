@@ -35,9 +35,16 @@ namespace LibraryUIL
 
         public void ShowList<T>(IEnumerable<T> list)
         {
-            foreach(var item in list)
+            try
             {
-                Console.WriteLine(item);
+                foreach (var item in list)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void ShowDictionaryWithList<T1, T2>(Dictionary<T1,List<T2>> dict){
@@ -100,7 +107,8 @@ namespace LibraryUIL
 
         public void ShowInnerJoin()
         {
-            ShowList<HelpClassInnerJoinClientSubscription>(_IQeuries.GetInnerJoin());
+            var l = _IQeuries.GetInnerJoin();
+            ShowList<HelpClassInnerJoinClientSubscription>(l);
         }
         public void ShowSelectClientsByCategory(Categories category)
         {

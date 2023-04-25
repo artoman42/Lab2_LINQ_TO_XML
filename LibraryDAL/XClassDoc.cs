@@ -19,9 +19,9 @@ namespace LibraryDAL
             path = _config.XMLDocsFolder;
         }
 
-        public XDocument GetXDoc<T>(T FileName)
+        public XDocument GetXDoc<T>()
         {
-            XDocument doc = XDocument.Load(path + typeof(T).Name + "s");
+            XDocument doc = XDocument.Load(path + typeof(T).Name + "s.xml");
             return doc;
         }
 

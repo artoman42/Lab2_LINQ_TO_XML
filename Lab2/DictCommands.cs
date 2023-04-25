@@ -69,6 +69,7 @@ namespace LibraryUIL
                     
                     if (parameters.Length == 0)
                     {
+                        object[] args ;
                         action.DynamicInvoke();
                     }
                     else

@@ -27,7 +27,7 @@ namespace LibraryBLL
 
             try
             {
-                return (T)Convert.ChangeType(element.Value, typeof(T));
+                return (T)Convert.ChangeType(element.Value, typeof(T)); 
             }
             catch (FormatException)
             {

@@ -47,7 +47,7 @@ namespace LibraryDAL
             try
             {
                 XDocument xDocument = new XDocument(); 
-                xDocument = _xClassDoc.GetXDoc(fileName);
+                xDocument = XDocument.Load(_config.XSDSchemesFolder +  fileName);
                 xDocument.Validate(schemaSet, MyValidationEventHandler);
                 return true;
             }
